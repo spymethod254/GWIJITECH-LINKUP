@@ -12,7 +12,7 @@ function BottomNav() {
 
                                     <Link to="/create">➕</Link>
 
-                                            <Link to="/follow">👥</Link>
+                                            <Link to="/people">👥</Link>
 
                                                     <Link to="/profile">👤</Link>
 
