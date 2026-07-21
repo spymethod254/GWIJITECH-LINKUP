@@ -6,6 +6,8 @@ import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
+import Chats from "./pages/Chats";
+import People from "./pages/People";
 
 function App() {
   return (
@@ -23,6 +25,9 @@ function App() {
                                                     <Route path="/settings" element={<Settings />} />
 
                                                             <Route path="*" element={<NotFound />} />
+                                                            
+                                                                    <Route path="/chats" element={<Chats />} />
+                                                                    <Route path="/people" element={<People />} />
 
                                                                   </Routes>
                                                                       </BrowserRouter>

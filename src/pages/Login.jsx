@@ -1,5 +1,7 @@
-function Home() {
-      return <h1>Home</h1>;
-      }
+import LoginForm from "../features/auth/components/LoginForm";
 
-      export default Home;
+function Login() {
+  return <LoginForm />;
+  }
+
+  export default Login;

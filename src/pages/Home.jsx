@@ -1,11 +1,37 @@
-function Home() {
-        return (
-            <div className="min-h-screen flex items-center justify-center bg-slate-900">
-                  <h1 className="text-5xl font-bold text-cyan-400">
-                          LINKUP.HUB 🚀
-                                </h1>
-                                    </div>
-                                      );
-                                      }
+import MainLayout from "../layouts/MainLayout";
+import CreatePost from "../components/posts/CreatePost";
+import PostCard from "../components/posts/PostCard";
 
-                                      export default Home;
+function Home() {
+  return (
+      <MainLayout>
+
+            <div className="space-y-6">
+
+                        <CreatePost />
+
+                                    <PostCard />
+
+                                                <PostCard />
+
+                                                            <PostCard />
+
+                                                                    <div className="rounded-xl border border-slate-800 bg-slate-900 p-5">
+
+                                                                              <h2 className="text-xl font-bold">
+                                                                                          Welcome to LINKUP.HUB 🚀
+                                                                                                    </h2>
+
+                                                                                                              <p className="mt-2 text-slate-400">
+                                                                                                                          Connect. Chat. Share. Build friendships.
+                                                                                                                                    </p>
+
+                                                                                                                                            </div>
+
+                                                                                                                                                  </div>
+
+                                                                                                                                                      </MainLayout>
+                                                                                                                                                        );
+                                                                                                                                                        }
+
+                                                                                                                                                        export default Home;

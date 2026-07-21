@@ -1,0 +1,38 @@
+export const users = [
+      {
+          id: 1,
+              username: "Bakari",
+                  name: "Bakari Hamisi",
+                      bio: "Founder of LINKUP.HUB 🚀",
+                          online: true,
+                              verified: true,
+                                  following: false,
+                                    },
+                                      {
+                                          id: 2,
+                                              username: "John",
+                                                  name: "John Carter",
+                                                      bio: "Full Stack Developer 💻",
+                                                          online: true,
+                                                              verified: false,
+                                                                  following: false,
+                                                                    },
+                                                                      {
+                                                                          id: 3,
+                                                                              username: "Sarah",
+                                                                                  name: "Sarah Kim",
+                                                                                      bio: "UI/UX Designer 🎨",
+                                                                                          online: false,
+                                                                                              verified: false,
+                                                                                                  following: true,
+                                                                                                    },
+                                                                                                      {
+                                                                                                          id: 4,
+                                                                                                              username: "Alex",
+                                                                                                                  name: "Alex Mwangi",
+                                                                                                                      bio: "React Developer ⚛️",
+                                                                                                                          online: true,
+                                                                                                                              verified: false,
+                                                                                                                                  following: false,
+                                                                                                                                    },
+                                                                                                                                    ];
