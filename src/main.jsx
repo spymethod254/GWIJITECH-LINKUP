@@ -6,7 +6,6 @@ import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-      <AuthProvider>
 
            <Toaster
                position="top-right"
@@ -14,6 +13,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
            />
 
             <App />
-                </AuthProvider>
                   </React.StrictMode>
                   );
