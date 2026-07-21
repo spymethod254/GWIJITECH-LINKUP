@@ -17,7 +17,7 @@ function ProfileStats() {
       <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 text-center">
 
         <h2 className="text-2xl font-bold text-cyan-400">
-          1.2K
+          11.2M
         </h2>
 
         <p className="text-slate-400">
@@ -29,7 +29,7 @@ function ProfileStats() {
       <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 text-center">
 
         <h2 className="text-2xl font-bold text-cyan-400">
-          845
+          0
         </h2>
 
         <p className="text-slate-400">

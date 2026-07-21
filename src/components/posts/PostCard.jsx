@@ -36,17 +36,17 @@ import {
 
                                                                                                                                                                         <button className="flex items-center gap-2 hover:text-red-400 transition">
                                                                                                                                                                                   <HiOutlineHeart />
-                                                                                                                                                                                            25
+                                                                                                                                                                                            25M
                                                                                                                                                                                                     </button>
 
                                                                                                                                                                                                             <button className="flex items-center gap-2 hover:text-cyan-400 transition">
                                                                                                                                                                                                                       <HiOutlineChatBubbleOvalLeft />
-                                                                                                                                                                                                                                8
+                                                                                                                                                                                                                                8k
                                                                                                                                                                                                                                         </button>
 
                                                                                                                                                                                                                                                 <button className="flex items-center gap-2 hover:text-green-400 transition">
                                                                                                                                                                                                                                                           <HiOutlineArrowPathRoundedSquare />
-                                                                                                                                                                                                                                                                    4
+                                                                                                                                                                                                                                                                    4k
                                                                                                                                                                                                                                                                             </button>
 
                                                                                                                                                                                                                                                                                   </div>
