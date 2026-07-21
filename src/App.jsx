@@ -8,6 +8,7 @@ import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 import Chats from "./pages/Chats";
 import People from "./pages/People";
+import Notifications from "./pages/Notifications";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
                                                             
                                                                     <Route path="/chats" element={<Chats />} />
                                                                             <Route path="/people" element={<People />} />
+                                                                                    <Route path="/notifications" element={<Notifications />} />
 
                                                                   </Routes>
                                                                       </BrowserRouter>
