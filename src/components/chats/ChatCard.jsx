@@ -1,5 +1,8 @@
+import { Link } from "react-router-dom";
+
 function ChatCard({ chat }) {
       return (
+        <Link to="/conversation">
           <div className="flex items-center justify-between p-4 rounded-xl bg-slate-900 border border-slate-800 hover:border-cyan-500 transition cursor-pointer">
 
                 <div className="flex items-center gap-3">
@@ -45,6 +48,7 @@ function ChatCard({ chat }) {
                                                                                                                                                                                                                                                                             </div>
 
                                                                                                                                                                                                                                                                                 </div>
+                                                                                                                                                                                                                                                                              </Link>
                                                                                                                                                                                                                                                                                   );
                                                                                                                                                                                                                                                                                   }
 
