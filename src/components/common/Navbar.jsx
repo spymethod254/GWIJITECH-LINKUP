@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import {
           HiMagnifyingGlass,
             HiBell,
@@ -16,9 +18,11 @@ import {
 
                                                             <div className="flex items-center gap-4 text-slate-300">
 
-                                                                      <button className="hover:text-cyan-400 transition">
+                                                            <Link to="/settings"
+
+                                                                       className="hover:text-cyan-400 transition">
                                                                                   <HiMagnifyingGlass size={22} />
-                                                                                            </button>
+                                                                                            </Link>
 
                                                                                                       <button className="hover:text-cyan-400 transition">
                                                                                                                   <HiBell size={22} />

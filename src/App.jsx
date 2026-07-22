@@ -29,8 +29,11 @@ function App() {
                                                             <Route path="*" element={<NotFound />} />
                                                             
                                                                     <Route path="/chats" element={<Chats />} />
+                                                                    
                                                                             <Route path="/people" element={<People />} />
+
                                                                                     <Route path="/notifications" element={<Notifications />} />
+
                                                                                              <Route path="/conversation" element={<Conversation />} />
 
                                                                   </Routes>
