@@ -1,45 +1,85 @@
-import { HiOutlinePhoto, HiOutlineFaceSmile } from "react-icons/hi2";
+import { useState } from "react";
+import {
+  HiOutlinePhoto,
+    HiOutlineFaceSmile,
+    } from "react-icons/hi2";
+    import { createPost } from "../../services/posts";
 
-function CreatePost() {
-  return (
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4">
+    function CreatePost({ onPostCreated }) {
+      const [content, setContent] = useState("");
+        const [loading, setLoading] = useState(false);
 
-            <div className="flex gap-3">
+          async function handleSubmit() {
+              if (!content.trim()) return;
 
-                    <div className="w-12 h-12 rounded-full bg-cyan-500 flex items-center justify-center text-black font-bold">
-                              B
-                                      </div>
+                  setLoading(true);
 
-                                              <input
-                                                        type="text"
-                                                                  placeholder="What's happening?"
-                                                                            className="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-4 outline-none focus:border-cyan-500"
-                                                                                    />
+                      const result = await createPost(content);
 
-                                                                                          </div>
+                          setLoading(false);
 
-                                                                                                <div className="flex justify-between mt-4">
+                              if (result.success) {
+                                    setContent("");
 
-                                                                                                        <div className="flex gap-3">
+                                          if (onPostCreated) {
+                                                  onPostCreated();
+                                                        }
+                                                            } else {
+                                                                  alert(result.error);
+                                                                      }
+                                                                        }
 
-                                                                                                                  <button className="text-cyan-400 text-xl">
-                                                                                                                              <HiOutlinePhoto />
-                                                                                                                                        </button>
+                                                                          return (
+                                                                              <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4">
 
-                                                                                                                                                  <button className="text-yellow-400 text-xl">
-                                                                                                                                                              <HiOutlineFaceSmile />
-                                                                                                                                                                        </button>
+                                                                                    <div className="flex gap-3">
 
-                                                                                                                                                                                </div>
+                                                                                            <div className="w-12 h-12 rounded-full bg-cyan-500 flex items-center justify-center text-black font-bold">
+                                                                                                      B
+                                                                                                              </div>
 
-                                                                                                                                                                                        <button className="bg-cyan-500 hover:bg-cyan-400 px-5 py-2 rounded-xl font-semibold text-black transition">
-                                                                                                                                                                                                  Post
-                                                                                                                                                                                                          </button>
+                                                                                                                      <textarea
+                                                                                                                                rows="3"
+                                                                                                                                          value={content}
+                                                                                                                                                    onChange={(e) => setContent(e.target.value)}
+                                                                                                                                                              placeholder="What's happening?"
+                                                                                                                                                                        className="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 outline-none resize-none focus:border-cyan-500"
+                                                                                                                                                                                />
 
-                                                                                                                                                                                                                </div>
+                                                                                                                                                                                      </div>
 
-                                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                                      );
-                                                                                                                                                                                                                      }
+                                                                                                                                                                                            <div className="flex justify-between mt-4">
 
-                                                                                                                                                                                                                      export default CreatePost;
+                                                                                                                                                                                                    <div className="flex gap-3">
+
+                                                                                                                                                                                                              <button
+                                                                                                                                                                                                                          type="button"
+                                                                                                                                                                                                                                      className="text-cyan-400 text-xl"
+                                                                                                                                                                                                                                                >
+                                                                                                                                                                                                                                                            <HiOutlinePhoto />
+                                                                                                                                                                                                                                                                      </button>
+
+                                                                                                                                                                                                                                                                                <button
+                                                                                                                                                                                                                                                                                            type="button"
+                                                                                                                                                                                                                                                                                                        className="text-yellow-400 text-xl"
+                                                                                                                                                                                                                                                                                                                  >
+                                                                                                                                                                                                                                                                                                                              <HiOutlineFaceSmile />
+                                                                                                                                                                                                                                                                                                                                        </button>
+
+                                                                                                                                                                                                                                                                                                                                                </div>
+
+                                                                                                                                                                                                                                                                                                                                                        <button
+                                                                                                                                                                                                                                                                                                                                                                  onClick={handleSubmit}
+                                                                                                                                                                                                                                                                                                                                                                            disabled={loading}
+                                                                                                                                                                                                                                                                                                                                                                                      className="bg-cyan-500 hover:bg-cyan-400 disabled:opacity-50 px-5 py-2 rounded-xl font-semibold text-black transition"
+                                                                                                                                                                                                                                                                                                                                                                                              >
+                                                                                                                                                                                                                                                                                                                                                                                                        {loading ? "Posting..." : "Post"}
+                                                                                                                                                                                                                                                                                                                                                                                                                </button>
+
+                                                                                                                                                                                                                                                                                                                                                                                                                      </div>
+
+                                                                                                                                                                                                                                                                                                                                                                                                                          </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                            );
+                                                                                                                                                                                                                                                                                                                                                                                                                            }
+
+                                                                                                                                                                                                                                                                                                                                                                                                                            export default CreatePost;
