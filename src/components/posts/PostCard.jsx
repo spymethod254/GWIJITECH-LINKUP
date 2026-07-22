@@ -1,58 +1,85 @@
 import {
-      HiOutlineHeart,
-        HiOutlineChatBubbleOvalLeft,
-          HiOutlineArrowPathRoundedSquare,
-          } from "react-icons/hi2";
+          HiOutlineHeart,
+            HiOutlineChatBubbleOvalLeft,
+              HiOutlineArrowPathRoundedSquare,
+              } from "react-icons/hi2";
+              import { FaCircleCheck } from "react-icons/fa6";
 
-          function PostCard() {
-            return (
-                <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4">
+              function PostCard({ post }) {
+                const username =
+                    post?.profiles?.username ||
+                        post?.username ||
+                            "Anonymous";
 
-                      <div className="flex gap-3">
+                              const avatarLetter = username.charAt(0).toUpperCase();
 
-                              <div className="w-12 h-12 rounded-full bg-cyan-500 flex items-center justify-center text-black font-bold">
-                                        B
-                                                </div>
+                                const createdAt = post?.created_at
+                                    ? new Date(post.created_at).toLocaleString()
+                                        : "Just now";
 
-                                                        <div>
+                                          return (
+                                              <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4">
 
-                                                                  <h3 className="font-bold">
-                                                                              Bakari
-                                                                                        </h3>
+                                                    {/* Header */}
 
-                                                                                                  <p className="text-slate-400 text-sm">
-                                                                                                              2 minutes ago
-                                                                                                                        </p>
+                                                          <div className="flex gap-3">
 
-                                                                                                                                </div>
+                                                                  <div className="w-12 h-12 rounded-full bg-cyan-500 flex items-center justify-center text-black font-bold">
+                                                                            {avatarLetter}
+                                                                                    </div>
 
-                                                                                                                                      </div>
+                                                                                            <div>
 
-                                                                                                                                            <p className="mt-4">
-                                                                                                                                                    🚀 Welcome to LINKUP.HUB! This is our first post.
-                                                                                                                                                          </p>
+                                                                                                      <div className="flex items-center gap-2">
 
-                                                                                                                                                                <div className="flex justify-around mt-6 border-t border-slate-800 pt-4">
+                                                                                                                  <h3 className="font-bold">
+                                                                                                                                {username}
+                                                                                                                                            </h3>
 
-                                                                                                                                                                        <button className="flex items-center gap-2 hover:text-red-400 transition">
-                                                                                                                                                                                  <HiOutlineHeart />
-                                                                                                                                                                                            25M
-                                                                                                                                                                                                    </button>
+                                                                                                                                                        <FaCircleCheck
+                                                                                                                                                                      className="text-sky-500"
+                                                                                                                                                                                    size={15}
+                                                                                                                                                                                                />
 
-                                                                                                                                                                                                            <button className="flex items-center gap-2 hover:text-cyan-400 transition">
-                                                                                                                                                                                                                      <HiOutlineChatBubbleOvalLeft />
-                                                                                                                                                                                                                                8k
-                                                                                                                                                                                                                                        </button>
+                                                                                                                                                                                                          </div>
 
-                                                                                                                                                                                                                                                <button className="flex items-center gap-2 hover:text-green-400 transition">
-                                                                                                                                                                                                                                                          <HiOutlineArrowPathRoundedSquare />
-                                                                                                                                                                                                                                                                    4k
-                                                                                                                                                                                                                                                                            </button>
+                                                                                                                                                                                                                    <p className="text-slate-400 text-sm">
+                                                                                                                                                                                                                                {createdAt}
+                                                                                                                                                                                                                                          </p>
 
-                                                                                                                                                                                                                                                                                  </div>
+                                                                                                                                                                                                                                                  </div>
 
-                                                                                                                                                                                                                                                                                      </div>
-                                                                                                                                                                                                                                                                                        );
-                                                                                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                                                        </div>
 
-                                                                                                                                                                                                                                                                                        export default PostCard;
+                                                                                                                                                                                                                                                              {/* Content */}
+
+                                                                                                                                                                                                                                                                    <p className="mt-4 whitespace-pre-wrap">
+                                                                                                                                                                                                                                                                            {post.content}
+                                                                                                                                                                                                                                                                                  </p>
+
+                                                                                                                                                                                                                                                                                        {/* Actions */}
+
+                                                                                                                                                                                                                                                                                              <div className="flex justify-around mt-6 border-t border-slate-800 pt-4">
+
+                                                                                                                                                                                                                                                                                                      <button className="flex items-center gap-2 hover:text-red-400 transition">
+                                                                                                                                                                                                                                                                                                                <HiOutlineHeart />
+                                                                                                                                                                                                                                                                                                                          0
+                                                                                                                                                                                                                                                                                                                                  </button>
+
+                                                                                                                                                                                                                                                                                                                                          <button className="flex items-center gap-2 hover:text-cyan-400 transition">
+                                                                                                                                                                                                                                                                                                                                                    <HiOutlineChatBubbleOvalLeft />
+                                                                                                                                                                                                                                                                                                                                                              0
+                                                                                                                                                                                                                                                                                                                                                                      </button>
+
+                                                                                                                                                                                                                                                                                                                                                                              <button className="flex items-center gap-2 hover:text-green-400 transition">
+                                                                                                                                                                                                                                                                                                                                                                                        <HiOutlineArrowPathRoundedSquare />
+                                                                                                                                                                                                                                                                                                                                                                                                  0
+                                                                                                                                                                                                                                                                                                                                                                                                          </button>
+
+                                                                                                                                                                                                                                                                                                                                                                                                                </div>
+
+                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                      );
+                                                                                                                                                                                                                                                                                                                                                                                                                      }
+
+                                                                                                                                                                                                                                                                                                                                                                                                                      export default PostCard;
