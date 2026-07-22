@@ -1,16 +1,16 @@
+import { useState } from "react";
 import MainLayout from "../layouts/MainLayout";
 import { FaCircleCheck } from "react-icons/fa6";
-import UserCard from "../components/users/UserCard";
-import { users } from "../data/users";
 
-const users = [
+const initialUsers = [
   {
     id: 1,
     username: "hamsogwiji",
     name: "Bakari Hamisi",
     verified: true,
     owner: true,
-    followers: 12507659,
+    followers: 1100200,
+    following: false,
   },
   {
     id: 2,
@@ -19,6 +19,7 @@ const users = [
     verified: true,
     owner: false,
     followers: 842,
+    following: false,
   },
   {
     id: 3,
@@ -27,10 +28,31 @@ const users = [
     verified: false,
     owner: false,
     followers: 315,
+    following: false,
   },
 ];
 
 function People() {
+  const [users, setUsers] = useState(initialUsers);
+
+  function toggleFollow(id) {
+    setUsers((current) =>
+      current.map((user) => {
+        if (user.id !== id) return user;
+
+        const following = !user.following;
+
+        return {
+          ...user,
+          following,
+          followers: following
+            ? user.followers + 1
+            : user.followers - 1,
+        };
+      })
+    );
+  }
+
   return (
     <MainLayout>
       <div className="space-y-5">
@@ -78,15 +100,22 @@ function People() {
                 </p>
 
                 <p className="text-slate-500 text-sm">
-                  {user.followers} followers
+                  {user.followers.toLocaleString()} followers
                 </p>
 
               </div>
 
             </div>
 
-            <button className="bg-cyan-500 hover:bg-cyan-400 text-black font-semibold px-5 py-2 rounded-xl transition">
-              Follow
+            <button
+              onClick={() => toggleFollow(user.id)}
+              className={`px-5 py-2 rounded-xl font-semibold transition ${
+                user.following
+                  ? "bg-slate-700 hover:bg-slate-600 text-white"
+                  : "bg-cyan-500 hover:bg-cyan-400 text-black"
+              }`}
+            >
+              {user.following ? "Following ✓" : "Follow"}
             </button>
 
           </div>
@@ -97,4 +126,4 @@ function People() {
   );
 }
 
-export default People;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+export default People;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
