@@ -10,11 +10,69 @@ import Chats from "./pages/Chats";
 import People from "./pages/People";
 import Notifications from "./pages/Notifications";
 import Conversation from "./pages/Conversation";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 
 function App() {
   return (
       <BrowserRouter>
             <Routes>
+
+                   <Route
+  path="/profile"
+  element={
+    <ProtectedRoute>
+      <Profile />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/settings"
+  element={
+    <ProtectedRoute>
+      <Settings />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/chats"
+  element={
+    <ProtectedRoute>
+      <Chats />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/people"
+  element={
+    <ProtectedRoute>
+      <People />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/notifications"
+  element={
+    <ProtectedRoute>
+      <Notifications />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/conversation"
+  element={
+    <ProtectedRoute>
+      <Conversation />
+    </ProtectedRoute>
+  }
+/>
+
+
+
 
                     <Route path="/" element={<Home />} />
 
@@ -22,20 +80,7 @@ function App() {
 
                                     <Route path="/register" element={<Register />} />
 
-                                            <Route path="/profile" element={<Profile />} />
-
-                                                    <Route path="/settings" element={<Settings />} />
-
-                                                            <Route path="*" element={<NotFound />} />
-                                                            
-                                                                    <Route path="/chats" element={<Chats />} />
-                                                                    
-                                                                            <Route path="/people" element={<People />} />
-
-                                                                                    <Route path="/notifications" element={<Notifications />} />
-
-                                                                                             <Route path="/conversation" element={<Conversation />} />
-
+                                                            <Route path="*" element={<NotFound />} />         
                                                                   </Routes>
                                                                       </BrowserRouter>
                                                                         );
