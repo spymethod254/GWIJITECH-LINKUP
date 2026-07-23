@@ -14,7 +14,7 @@ function CommentForm({ postId }) {
 
     try {
       // Temporary user until authentication is connected
-      const userId = "00000000-0000-0000-0000-000000000000";
+      const userId = crypto.randomUUID();
 
       await addComment({
         postId,
