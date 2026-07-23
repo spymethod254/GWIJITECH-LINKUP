@@ -56,8 +56,6 @@ import { FaCircleCheck } from "react-icons/fa6";
 
                                                                                                                                                                                                                                                                                         {/* Actions */}
 
-<PostActions post={post} />
-
 <CommentForm postId={post.id} />
 
 <Comments postId={post.id} />                                                                                                                                                                                                                                                                                              
