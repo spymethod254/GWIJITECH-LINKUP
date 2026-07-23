@@ -1,33 +1,54 @@
-import { HiChevronRight } from "react-icons/hi2";
+import MainLayout from "../layouts/MainLayout";
+import SettingItem from "../components/settings/SettingItem";
+import LogoutButton from "../components/auth/LogoutButton";
 
-function SettingItem({ icon, title, description }) {
+import {
+  HiUserCircle,
+  HiBell,
+  HiShieldCheck,
+  HiInformationCircle,
+} from "react-icons/hi2";
+
+function Settings() {
   return (
-      <button className="w-full flex items-center justify-between p-4 rounded-2xl bg-slate-900 border border-slate-800 hover:border-cyan-500 transition">
+    <MainLayout>
 
-            <div className="flex items-center gap-4">
+      <div className="space-y-6">
 
-                    <div className="text-2xl text-cyan-400">
-                              {icon}
-                                      </div>
+        <h1 className="text-3xl font-bold">
+          Settings ⚙️
+        </h1>
 
-                                              <div className="text-left">
+        <SettingItem
+          icon={<HiUserCircle />}
+          title="Edit Profile"
+          description="Change your profile information."
+        />
 
-                                                        <h2 className="font-semibold">
-                                                                    {title}
-                                                                              </h2>
+        <SettingItem
+          icon={<HiBell />}
+          title="Notifications"
+          description="Manage notification preferences."
+        />
 
-                                                                                        <p className="text-sm text-slate-400">
-                                                                                                    {description}
-                                                                                                              </p>
+        <SettingItem
+          icon={<HiShieldCheck />}
+          title="Privacy & Security"
+          description="Control your account privacy."
+        />
 
-                                                                                                                      </div>
+        <SettingItem
+          icon={<HiInformationCircle />}
+          title="About LINKUP.HUB"
+          description="Version 1.0.0"
+        />
 
-                                                                                                                            </div>
+        <LogoutButton />
 
-                                                                                                                                  <HiChevronRight className="text-slate-500" size={22} />
+      </div>
 
-                                                                                                                                      </button>
-                                                                                                                                        );
-                                                                                                                                        }
+    </MainLayout>
+  );
+}
 
-                                                                                                                                        export default SettingItem;
+export default Settings;
