@@ -1,76 +1,79 @@
-import { useState } from "react";
 import { FaCircleCheck } from "react-icons/fa6";
-import EditProfileModal from "./EditProfileModal";
+import useProfile from "../../hooks/useProfile";
 
 function ProfileHeader() {
-  const [openModal, setOpenModal] = useState(false);
+  const { profile, loading } = useProfile();
 
-  return (
-    <>
-      <div className="rounded-2xl overflow-hidden border border-slate-800 bg-slate-900">
+    if (loading) {
+        return (
+              <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
+                      Loading profile...
+                            </div>
+                                );
+                                  }
 
-        {/* Cover */}
-        <div className="h-44 bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-600"></div>
+                                    if (!profile) {
+                                        return (
+                                              <div className="rounded-2xl border border-red-700 bg-slate-900 p-6">
+                                                      Failed to load profile.
+                                                            </div>
+                                                                );
+                                                                  }
 
-        {/* Profile */}
-        <div className="px-6 pb-6">
+                                                                    const avatarLetter = profile.username
+                                                                        ? profile.username.charAt(0).toUpperCase()
+                                                                            : "?";
 
-          <div className="-mt-14 flex justify-between items-end">
+                                                                              return (
+                                                                                  <div className="rounded-2xl overflow-hidden border border-slate-800 bg-slate-900">
 
-            <div className="w-28 h-28 rounded-full bg-slate-950 border-4 border-slate-900 flex items-center justify-center text-4xl font-bold text-cyan-400">
-              B
-            </div>
+                                                                                        {/* Cover */}
+                                                                                              <div className="h-40 bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-600"></div>
 
-            <button
-              onClick={() => setOpenModal(true)}
-              className="px-5 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-black font-semibold transition"
-            >
-              Edit Profile
-            </button>
+                                                                                                    {/* Profile */}
+                                                                                                          <div className="px-6 pb-6">
 
-          </div>
+                                                                                                                  <div className="-mt-14 flex justify-between items-end">
 
-          <div className="mt-5">
+                                                                                                                            <div className="w-28 h-28 rounded-full bg-slate-950 border-4 border-slate-900 flex items-center justify-center text-4xl font-bold text-cyan-400">
+                                                                                                                                        {avatarLetter}
+                                                                                                                                                  </div>
 
-            <div className="flex items-center gap-2 flex-wrap">
+                                                                                                                                                            <button className="px-5 py-2 rounded-xl bg-cyan-500 text-black font-semibold hover:bg-cyan-400 transition">
+                                                                                                                                                                        Edit Profile
+                                                                                                                                                                                  </button>
 
-              <h2 className="text-2xl font-bold text-white">
-                Bakari Hamisi
-              </h2>
+                                                                                                                                                                                          </div>
 
-              <FaCircleCheck
-                className="text-sky-500"
-                size={18}
-              />
+                                                                                                                                                                                                  <div className="mt-4">
 
-              <span className="text-xl">👑</span>
+                                                                                                                                                                                                            <div className="flex items-center gap-2">
 
-            </div>
+                                                                                                                                                                                                                        <h2 className="text-2xl font-bold text-white">
+                                                                                                                                                                                                                                      {profile.full_name}
+                                                                                                                                                                                                                                                  </h2>
 
-            <p className="text-cyan-400 mt-1">
-              @hamsogwiji
-            </p>
+                                                                                                                                                                                                                                                              <FaCircleCheck
+                                                                                                                                                                                                                                                                            className="text-sky-500"
+                                                                                                                                                                                                                                                                                          size={18}
+                                                                                                                                                                                                                                                                                                      />
 
-            <p className="text-slate-400 mt-3">
-              🚀 Founder of LINKUP.HUB • Building a modern social platform with React + Supabase.
-            </p>
+                                                                                                                                                                                                                                                                                                                </div>
 
-            <p className="text-slate-500 text-sm mt-3">
-              📍 Kenya
-            </p>
+                                                                                                                                                                                                                                                                                                                          <p className="text-cyan-400">
+                                                                                                                                                                                                                                                                                                                                      @{profile.username}
+                                                                                                                                                                                                                                                                                                                                                </p>
 
-          </div>
+                                                                                                                                                                                                                                                                                                                                                          <p className="text-slate-400 mt-3">
+                                                                                                                                                                                                                                                                                                                                                                      {profile.bio || "Welcome to LINKUP.HUB 🚀"}
+                                                                                                                                                                                                                                                                                                                                                                                </p>
 
-        </div>
+                                                                                                                                                                                                                                                                                                                                                                                        </div>
 
-      </div>
+                                                                                                                                                                                                                                                                                                                                                                                              </div>
 
-      <EditProfileModal
-        open={openModal}
-        onClose={() => setOpenModal(false)}
-      />
-    </>
-  );
-}
+                                                                                                                                                                                                                                                                                                                                                                                                  </div>
+                                                                                                                                                                                                                                                                                                                                                                                                    );
+                                                                                                                                                                                                                                                                                                                                                                                                    }
 
-export default ProfileHeader;
+                                                                                                                                                                                                                                                                                                                                                                                                    export default ProfileHeader;
