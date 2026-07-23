@@ -1,0 +1,59 @@
+import { useState } from "react";
+import { addComment } from "../../services/commentService";
+
+function CommentForm({ postId }) {
+  const [content, setContent] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    if (!content.trim()) return;
+
+    setLoading(true);
+
+    try {
+      // Temporary user until authentication is connected
+      const userId = "00000000-0000-0000-0000-000000000000";
+
+      await addComment({
+        postId,
+        userId,
+        content,
+      });
+
+      setContent("");
+
+      alert("✅ Comment added!");
+    } catch (error) {
+      alert(error.message);
+    }
+
+    setLoading(false);
+  }
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+      className="mt-4 flex gap-3"
+    >
+      <input
+        type="text"
+        value={content}
+        onChange={(e) => setContent(e.target.value)}
+        placeholder="Write a comment..."
+        className="flex-1 rounded-xl bg-slate-950 border border-slate-700 px-4 py-2 text-white placeholder:text-slate-500 outline-none focus:border-cyan-500"
+      />
+
+      <button
+        type="submit"
+        disabled={loading}
+        className="rounded-xl bg-cyan-500 px-4 py-2 font-semibold text-black hover:bg-cyan-400 transition disabled:opacity-50"
+      >
+        {loading ? "..." : "Comment"}
+      </button>
+    </form>
+  );
+}
+
+export default CommentForm;
