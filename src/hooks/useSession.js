@@ -1,0 +1,23 @@
+import { useEffect, useState } from "react";
+import { getCurrentUser } from "../services/sessionService";
+
+export default function useSession() {
+  const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+      useEffect(() => {
+          async function loadUser() {
+                const currentUser = await getCurrentUser();
+
+                      setUser(currentUser);
+                            setLoading(false);
+                                }
+
+                                    loadUser();
+                                      }, []);
+
+                                        return {
+                                            user,
+                                                loading,
+                                                  };
+                                                  }
