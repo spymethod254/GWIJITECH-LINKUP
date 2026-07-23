@@ -13,22 +13,25 @@ function CommentForm({ postId }) {
     setLoading(true);
 
     try {
-      // Temporary user until authentication is connected
       const userId = crypto.randomUUID();
 
-      await addComment({
+      console.log("Post ID:", postId);
+      console.log("User ID:", userId);
+      console.log("Content:", content);
+
+      const result = await addComment({
         postId,
         userId,
         content,
       });
 
+      console.log("Supabase Result:", result);
+
       setContent("");
-
-      alert("✅ Comment added!");
     } catch (error) {
+      console.error("FULL ERROR:", error);
       alert(error.message);
-    }
-
+}
     setLoading(false);
   }
 
