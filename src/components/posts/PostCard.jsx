@@ -1,13 +1,7 @@
 import PostActions from "./PostActions";
 import CommentForm from "./CommentForm";
 import Comments from "./Comments";
-
-import {
-          HiOutlineHeart,
-            HiOutlineChatBubbleOvalLeft,
-              HiOutlineArrowPathRoundedSquare,
-              } from "react-icons/hi2";
-              import { FaCircleCheck } from "react-icons/fa6";
+import { FaCircleCheck } from "react-icons/fa6";
 
               function PostCard({ post }) {
                 const username =
