@@ -11,13 +11,23 @@ import People from "./pages/People";
 import Notifications from "./pages/Notifications";
 import Conversation from "./pages/Conversation";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
+import EditProfile from "./pages/EditProfile";
 
 function App() {
   return (
       <BrowserRouter>
             <Routes>
 
-                   <Route
+<Route
+  path="/edit-profile"
+  element={
+    <ProtectedRoute>
+      <EditProfile />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
   path="/profile"
   element={
     <ProtectedRoute>
