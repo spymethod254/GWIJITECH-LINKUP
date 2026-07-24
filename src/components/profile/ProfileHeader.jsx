@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { FaCircleCheck } from "react-icons/fa6";
 import useProfile from "../../hooks/useProfile";
 
@@ -39,11 +40,14 @@ function ProfileHeader() {
                                                                                                                                         {avatarLetter}
                                                                                                                                                   </div>
 
-                                                                                                                                                            <button className="px-5 py-2 rounded-xl bg-cyan-500 text-black font-semibold hover:bg-cyan-400 transition">
-                                                                                                                                                                        Edit Profile
-                                                                                                                                                                                  </button>
 
-                                                                                                                                                                                          </div>
+<Link
+  to="/edit-profile"
+  className="px-5 py-2 rounded-xl bg-cyan-500 text-black font-semibold hover:bg-cyan-400 transition"
+>
+  Edit Profile
+</Link>                                                                                                                                                                                                                                                                       
+                                                                                                                                                                                                                                             </div>
 
                                                                                                                                                                                                   <div className="mt-4">
 
