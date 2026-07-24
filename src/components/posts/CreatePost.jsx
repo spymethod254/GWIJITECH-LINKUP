@@ -1,85 +1,94 @@
 import { useState } from "react";
 import {
   HiOutlinePhoto,
-    HiOutlineFaceSmile,
-    } from "react-icons/hi2";
-    import { createPost } from "../../services/posts";
+  HiOutlineFaceSmile,
+} from "react-icons/hi2";
 
-    function CreatePost({ onPostCreated }) {
-      const [content, setContent] = useState("");
-        const [loading, setLoading] = useState(false);
+import { createPost } from "../../services/posts";
+import useSession from "../../hooks/useSession";
 
-          async function handleSubmit() {
-              if (!content.trim()) return;
+function CreatePost({ onPostCreated }) {
+  const { user } = useSession();
 
-                  setLoading(true);
+  const [content, setContent] = useState("");
+  const [loading, setLoading] = useState(false);
 
-                      const result = await createPost(content);
+  async function handleSubmit() {
+    if (!content.trim()) return;
 
-                          setLoading(false);
+    if (!user) {
+      alert("Please login first.");
+      return;
+    }
 
-                              if (result.success) {
-                                    setContent("");
+    setLoading(true);
 
-                                          if (onPostCreated) {
-                                                  onPostCreated();
-                                                        }
-                                                            } else {
-                                                                  alert(result.error);
-                                                                      }
-                                                                        }
+    const result = await createPost(content, user.id);
 
-                                                                          return (
-                                                                              <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4">
+    setLoading(false);
 
-                                                                                    <div className="flex gap-3">
+    if (result.success) {
+      setContent("");
 
-                                                                                            <div className="w-12 h-12 rounded-full bg-cyan-500 flex items-center justify-center text-black font-bold">
-                                                                                                      B
-                                                                                                              </div>
+      if (onPostCreated) {
+        onPostCreated();
+      }
+    } else {
+      alert(result.error);
+    }
+  }
 
-                                                                                                                      <textarea
-                                                                                                                                rows="3"
-                                                                                                                                          value={content}
-                                                                                                                                                    onChange={(e) => setContent(e.target.value)}
-                                                                                                                                                              placeholder="What's happening?"
-                                                                                                                                                                        className="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 outline-none resize-none focus:border-cyan-500"
-                                                                                                                                                                                />
+  return (
+    <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4">
 
-                                                                                                                                                                                      </div>
+      <div className="flex gap-3">
 
-                                                                                                                                                                                            <div className="flex justify-between mt-4">
+        <div className="w-12 h-12 rounded-full bg-cyan-500 flex items-center justify-center text-black font-bold">
+          {user?.email?.charAt(0).toUpperCase() || "U"}
+        </div>
 
-                                                                                                                                                                                                    <div className="flex gap-3">
+        <textarea
+          rows="3"
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+          placeholder="What's happening?"
+          className="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 outline-none resize-none focus:border-cyan-500"
+        />
 
-                                                                                                                                                                                                              <button
-                                                                                                                                                                                                                          type="button"
-                                                                                                                                                                                                                                      className="text-cyan-400 text-xl"
-                                                                                                                                                                                                                                                >
-                                                                                                                                                                                                                                                            <HiOutlinePhoto />
-                                                                                                                                                                                                                                                                      </button>
+      </div>
 
-                                                                                                                                                                                                                                                                                <button
-                                                                                                                                                                                                                                                                                            type="button"
-                                                                                                                                                                                                                                                                                                        className="text-yellow-400 text-xl"
-                                                                                                                                                                                                                                                                                                                  >
-                                                                                                                                                                                                                                                                                                                              <HiOutlineFaceSmile />
-                                                                                                                                                                                                                                                                                                                                        </button>
+      <div className="flex justify-between mt-4">
 
-                                                                                                                                                                                                                                                                                                                                                </div>
+        <div className="flex gap-3">
 
-                                                                                                                                                                                                                                                                                                                                                        <button
-                                                                                                                                                                                                                                                                                                                                                                  onClick={handleSubmit}
-                                                                                                                                                                                                                                                                                                                                                                            disabled={loading}
-                                                                                                                                                                                                                                                                                                                                                                                      className="bg-cyan-500 hover:bg-cyan-400 disabled:opacity-50 px-5 py-2 rounded-xl font-semibold text-black transition"
-                                                                                                                                                                                                                                                                                                                                                                                              >
-                                                                                                                                                                                                                                                                                                                                                                                                        {loading ? "Posting..." : "Post"}
-                                                                                                                                                                                                                                                                                                                                                                                                                </button>
+          <button
+            type="button"
+            className="text-cyan-400 text-xl"
+          >
+            <HiOutlinePhoto />
+          </button>
 
-                                                                                                                                                                                                                                                                                                                                                                                                                      </div>
+          <button
+            type="button"
+            className="text-yellow-400 text-xl"
+          >
+            <HiOutlineFaceSmile />
+          </button>
 
-                                                                                                                                                                                                                                                                                                                                                                                                                          </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                            );
-                                                                                                                                                                                                                                                                                                                                                                                                                            }
+        </div>
 
-                                                                                                                                                                                                                                                                                                                                                                                                                            export default CreatePost;
+        <button
+          onClick={handleSubmit}
+          disabled={loading}
+          className="bg-cyan-500 hover:bg-cyan-400 disabled:opacity-50 px-5 py-2 rounded-xl font-semibold text-black transition"
+        >
+          {loading ? "Posting..." : "Post"}
+        </button>
+
+      </div>
+
+    </div>
+  );
+}
+
+export default CreatePost;
