@@ -2,18 +2,25 @@ import { supabase } from "../supabase";
 
 // Get all posts
 export async function getPosts() {
-      const { data, error } = await supabase
-          .from("posts")
-              .select("*")
-                  .order("created_at", { ascending: false });
+  const { data, error } = await supabase
+    .from("posts")
+    .select(`
+      *,
+      profiles (
+        username,
+        full_name,
+        is_verified
+      )
+    `)
+    .order("created_at", { ascending: false });
 
-                    if (error) {
-                            console.error("Error fetching posts:", error.message);
-                                return [];
-                    }
+  if (error) {
+    console.error("Error fetching posts:", error.message);
+    return [];
+  }
 
-                      return data;
-                }
+  return data;
+}
 
 // Get logged-in user's posts
 export async function getMyPosts(userId) {
@@ -31,57 +38,58 @@ export async function getMyPosts(userId) {
     .order("created_at", { ascending: false });
 
   if (error) {
-    console.error(error.message);
+    console.error("Error fetching posts:", error.message);
     return [];
   }
 
   return data;
 }
 
-                // Create a new post
-                export async function createPost(content) {
-                      if (!content.trim()) {
-                            return {
-                                      success: false,
-                                            error: "Post cannot be empty.",
-                            };
-                        }
+// Create a new post
+export async function createPost(content, userId) {
+  if (!content.trim()) {
+    return {
+      success: false,
+      error: "Post cannot be empty.",
+    };
+  }
 
-                          const { data, error } = await supabase
-                              .from("posts")
-                                  .insert([
-                                          {
-                                                    content,
-                                          },
-                                        ])
-                                            .select();
+  const { data, error } = await supabase
+    .from("posts")
+    .insert([
+      {
+        content,
+        user_id: userId,
+      },
+    ])
+    .select();
 
-                                              if (error) {
-                                                    console.error("Error creating post:", error.message);
+  if (error) {
+    console.error("Error creating post:", error.message);
 
-                                                        return {
-                                                                  success: false,
-                                                                        error: error.message,
-                                                        };
-                                                    }
+    return {
+      success: false,
+      error: error.message,
+    };
+  }
 
-                                                      return {
-                                                            success: true,
-                                                                data,
-                                                      };
-                                                    }
+  return {
+    success: true,
+    data,
+  };
+}
 
-                                                    // Delete a post
-                                                    export async function deletePost(id) {
-                                                          const { error } = await supabase
-                                                              .from("posts")
-                                                                  .delete()
-                                                                      .eq("id", id);
+// Delete a post
+export async function deletePost(id) {
+  const { error } = await supabase
+    .from("posts")
+    .delete()
+    .eq("id", id);
 
-                                                                        if (error) {
-                                                                                console.error("Error deleting post:", error.message);
-                                                                                    return false;
-                                                                        }
+  if (error) {
+    console.error("Error deleting post:", error.message);
+    return false;
+  }
 
-                                                                          return true;
-                                                                    }
+  return true;
+}
