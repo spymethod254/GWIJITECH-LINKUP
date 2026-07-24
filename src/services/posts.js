@@ -15,6 +15,29 @@ export async function getPosts() {
                       return data;
                 }
 
+// Get logged-in user's posts
+export async function getMyPosts(userId) {
+  const { data, error } = await supabase
+    .from("posts")
+    .select(`
+      *,
+      profiles (
+        username,
+        full_name,
+        is_verified
+      )
+    `)
+    .eq("user_id", userId)
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    console.error(error.message);
+    return [];
+  }
+
+  return data;
+}
+
                 // Create a new post
                 export async function createPost(content) {
                       if (!content.trim()) {
